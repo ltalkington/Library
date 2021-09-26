@@ -1,45 +1,69 @@
 "use strict";
-
+//Elements
 let buttonClickElem = document.getElementById("add-button");
-// Get the modal
-var modal = document.getElementById("myModal");
+let submitBookElem = document.getElementById("submitBook");
+let modal = document.getElementById("myModal");
+let bookNameField = document.getElementById("bookName");
+let authorNameField = document.getElementById("autName");
+let numOfPagesField = document.getElementById("pages");
+let statusField = document.getElementById("status");
+let span = document.getElementsByClassName("close")[0];
+//the library array
+let Library = [];
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-let myLibrary = [];
-function Book(name, author, pages, status) {
-  this.name = name;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
+function addBook(book) {
+  Library.push(book);
+  console.log("success");
+  console.log(Library);
+}
+function removeBook(book) {
+  this.books.filter((book) => Library.title != book);
 }
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
+//Book constructor
+class Book {
+  constructor(name, author, pages, status) {
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+  }
 }
-function buttonClick() {
-  console.log(44);
-}
-buttonClickElem.addEventListener("click", buttonClick);
+
+//Modal functions
 // When the user clicks on the button, open the modal
 buttonClickElem.onclick = function () {
   modal.style.display = "block";
 };
-
-// When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   modal.style.display = "none";
 };
-
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 };
+submitBookElem.onclick = function () {
+  event.preventDefault();
+  let title = bookNameField.value;
+  let author = authorNameField.value;
+  let pages = numOfPagesField.value;
+  let status = statusField.value;
+  let newBook = new Book(title, author, pages, status);
+  addBook(newBook);
+  modal.style.display = "none";
+  bookNameField.value = "";
+  authorNameField.value = "";
+  numOfPagesField.value = 0;
+};
 
-const NewBook = new Book("bible", "jesus", "400", "done");
-addBookToLibrary(NewBook);
-console.log(NewBook.name, NewBook.author);
-console.log(myLibrary);
+//function for submitting a book
+
+// make cards for each item in library
+
+const newBook = new Book("bible", "jesus", "400", "done");
+addBook(newBook);
+const newBook2 = new Book("girls want girls", "drake ", "400", "done");
+addBook(newBook2);
+console.log(typeof newBook2);
+//Lib.addBook(newBook2);

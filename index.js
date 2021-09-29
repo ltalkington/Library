@@ -91,14 +91,18 @@ const createBookCard = (book, index) => {
   const doneStatus = document.createElement("button");
   const removeButton = document.createElement("button");
 
+  // adding text content to cards
   bookName.textContent = "Book Name: " + `${book.name}`;
   bookAuthor.textContent = "Book Author: " + book.author;
   pages.textContent = "Total Pages: " + `${book.pages} pages `;
   doneStatus.textContent = "Finished";
   removeButton.textContent = "Remove";
+
+  //class adds to parts of card
   bookName.className = "book-title";
   bookCard.className = "book-container";
   removeButton.setAttribute("id", "remove");
+  doneStatus.setAttribute("id", "readStatus");
 
   bookCard.appendChild(bookName);
   bookCard.appendChild(bookAuthor);
@@ -107,16 +111,47 @@ const createBookCard = (book, index) => {
   bookCard.appendChild(removeButton);
   cardNode.appendChild(bookCard);
   console.log(book, index);
+
+  if (Library[index].status == "True") {
+    bookCard.style.backgroundColor = "green";
+    console.log("complete color change");
+  } else if (Library[index].status == "False") {
+    bookCard.style.backgroundColor = "lightgray";
+  }
+
   removeButton.addEventListener("click", () => {
     removeBook(book, index);
+  });
+  doneStatus.addEventListener("click", () => {
+    if (Library[index].status == "True") {
+      Library[index].status = "False";
+      console.log("now false");
+      doneStatus.textContent = "Not Read";
+      if (Library[index].status == "True") {
+        bookCard.style.backgroundColor = "green";
+        console.log("complete color change");
+      } else if (Library[index].status == "False") {
+        bookCard.style.backgroundColor = "lightgray";
+      }
+    } else {
+      Library[index].status = "True";
+      console.log("this just got done");
+      doneStatus.textContent = "Read";
+      if (Library[index].status == "True") {
+        bookCard.style.backgroundColor = "green";
+
+        console.log("complete color change");
+      } else if (Library[index].status == "False") {
+        bookCard.style.backgroundColor = "lightgray";
+      }
+    }
   });
 };
 
 // Testing Script
-const newBook = new Book("bible", "jesus", "400", "done");
+const newBook = new Book("Think and Grow Rich", "Napoleon Hil", "238", "True");
 addBook(newBook);
-const newBook2 = new Book("girls want girls", "drake ", "400", "done");
-addBook(newBook2);
 console.log(typeof newBook2);
 updateBookDivs();
+console.log("this is the book status", Library[0].status);
 //Lib.addBook(newBook2);

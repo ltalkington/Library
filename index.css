@@ -1,3 +1,20 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 1em;
+}
+body {
+  font-size: 100%;
+}
+a img,
+:link img,
+:visited img {
+  border: 0;
+}
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -33,4 +50,48 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.book-title {
+  font-style: italic;
+}
+
+#page-header-div {
+  background-color: lightblue;
+  text-align: center;
+}
+
+.book-container {
+  background-color: gray;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 240px;
+  text-align: center;
+}
+
+#page-header {
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  font-size: 75px;
+}
+
+#card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: 75px;
+}
+
+#add-button {
+  margin-bottom: 5px;
+}
+
+#body-div {
+  background-color: lightgray;
+  text-align: center;
+  margin-bottom: 10px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
